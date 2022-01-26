@@ -1,7 +1,8 @@
 import { types } from "../../Types";
 
 const initialState = {
-    modalOpen: false
+    modalOpen: false,
+    msgError: null
 }
 
 export const UIReducer = ( state = initialState, actions ) => {
@@ -16,6 +17,18 @@ export const UIReducer = ( state = initialState, actions ) => {
             return {
                 ...state,
                 modalOpen: false
+            };
+        
+        case types.uiSetError:
+            return {
+                ...state,
+                msgError: actions.payload
+            };
+            
+        case types.uiRmError:
+            return {
+                ...state,
+                msgError: null
             };
     
         default:

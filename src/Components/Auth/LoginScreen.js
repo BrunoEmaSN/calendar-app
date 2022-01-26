@@ -1,18 +1,106 @@
 import React from 'react';
+import Swal from 'sweetalert2';
+import validator from 'validator';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from '../../Hooks/useForm';
+import { rmError, setError } from '../../Store/UI/UIActions';
+import { startLogin, startRegister } from '../../Store/Auth/AuthActions';
 import './login.css';
 
 export const LoginScreen = () => {
+    const dispatch = useDispatch();
+
+    const { msgError } = useSelector( state => state.UI );
+
+    const [ formLoginValues, handleLoginInputChange ] = useForm({
+        lEmail: 'jonathan@jojo.com',
+        lPassword: 'jjba123'
+    });
+    
+    const { lEmail, lPassword } = formLoginValues;
+
+    const [ formRegisterValues, handleRegisterInputChange ] = useForm({
+        rName: 'Joseph',
+        rEmail: 'joseph@jojo.com',
+        rPassword: 'jjba123',
+        rPasswordConfirm: 'jjba123'
+    });
+
+    const { rName, rEmail, rPassword, rPasswordConfirm } = formRegisterValues;
+
+    const isFormLoginValid = () => {
+        if( !validator.isEmail( lEmail ) ) {
+            dispatch( setError( 'Invalid email' ) );
+            return false;
+        }
+        
+        if( lPassword.length < 6 ){
+            dispatch( setError( 'Password should be at least 6 characters' ) );
+            return false;
+        }
+
+        dispatch( rmError() );
+        return true;
+    }
+
+    const isFormRegisterValid = () => {
+        if( rName.length < 3 ){
+            dispatch( setError( 'Name should be at least 3 characters' ) );
+        }
+        if( !validator.isEmail( rEmail ) ) {
+            dispatch( setError( 'Invalid email' ) );
+            return false;
+        }
+        
+        if( rPassword.length < 6 ){
+            dispatch( setError( 'Password should be at least 6 characters' ) );
+            return false;
+        }
+
+        if( !validator.equals(rPassword, rPasswordConfirm) ){
+            dispatch( setError( 'Password and Confirm Password should be equals' ) );
+            return false;
+        }
+
+        dispatch( rmError() );
+        return true;
+    }
+
+    const handleLogin = ( e ) => {
+        e.preventDefault();
+        if( isFormLoginValid() ){
+            dispatch( startLogin( lEmail, lPassword ) );
+        }
+        else {
+            Swal.fire('Error', msgError, 'error');
+        }
+    }
+
+    const handleRegister = ( e ) => {
+        e.preventDefault();
+        if( isFormRegisterValid() ){
+            dispatch( startRegister( rEmail, rPassword, rName ) )
+        }
+        else {
+            Swal.fire('Error', msgError, 'error');
+        }
+    }
+
     return (
         <div className="container login-container">
             <div className="row">
                 <div className="col-md-6 login-form-1">
                     <h3>Ingreso</h3>
-                    <form>
+                    <form onSubmit={ handleLogin }>
                         <div className="form-group">
                             <input 
                                 type="text"
                                 className="form-control"
                                 placeholder="Correo"
+                                name="lEmail"
+                                value={ lEmail }
+                                onChange={ handleLoginInputChange }
+                                required
                             />
                         </div>
                         <div className="form-group">
@@ -20,13 +108,17 @@ export const LoginScreen = () => {
                                 type="password"
                                 className="form-control"
                                 placeholder="Contraseña"
+                                name="lPassword"
+                                value={ lPassword }
+                                onChange={ handleLoginInputChange }
+                                required
                             />
                         </div>
                         <div className="form-group">
                             <input 
                                 type="submit"
                                 className="btnSubmit"
-                                value="Login" 
+                                value="Login"
                             />
                         </div>
                     </form>
@@ -34,12 +126,16 @@ export const LoginScreen = () => {
 
                 <div className="col-md-6 login-form-2">
                     <h3>Registro</h3>
-                    <form>
+                    <form onSubmit={ handleRegister }>
                         <div className="form-group">
                             <input
                                 type="text"
                                 className="form-control"
                                 placeholder="Nombre"
+                                name="rName"
+                                value={ rName }
+                                onChange={ handleRegisterInputChange }
+                                required
                             />
                         </div>
                         <div className="form-group">
@@ -47,13 +143,21 @@ export const LoginScreen = () => {
                                 type="email"
                                 className="form-control"
                                 placeholder="Correo"
+                                name="rEmail"
+                                value={ rEmail }
+                                onChange={ handleRegisterInputChange }
+                                required
                             />
                         </div>
                         <div className="form-group">
                             <input
                                 type="password"
                                 className="form-control"
-                                placeholder="Contraseña" 
+                                placeholder="Contraseña"
+                                name="rPassword"
+                                value={ rPassword }
+                                onChange={ handleRegisterInputChange }
+                                required
                             />
                         </div>
 
@@ -61,7 +165,11 @@ export const LoginScreen = () => {
                             <input
                                 type="password"
                                 className="form-control"
-                                placeholder="Repita la contraseña" 
+                                placeholder="Repita la contraseña"
+                                name="rPasswordConfirm"
+                                value={ rPasswordConfirm }
+                                onChange={ handleRegisterInputChange }
+                                required
                             />
                         </div>
 
