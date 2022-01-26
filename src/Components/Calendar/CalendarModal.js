@@ -5,7 +5,7 @@ import moment from 'moment';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../Store/UI/UIActions';
-import { eventActiveCleaning, eventAddNew, eventUpdate } from '../../Store/Calendar/EventActions';
+import { eventActiveCleaning, eventStartUpdate, startEventAddNew } from '../../Store/Calendar/EventActions';
 
 const customStyles = {
     content: {
@@ -99,7 +99,7 @@ export const CalendarModal = () => {
         setTitleValid(true);
         handleCloseModal();
         if( !activeEvent ){
-            dispatch( eventAddNew({
+            dispatch( startEventAddNew({
                 ...formValues,
                 id: new Date().getTime(),
                 user:{
@@ -109,7 +109,7 @@ export const CalendarModal = () => {
             }));
         }
         else {
-            dispatch( eventUpdate({
+            dispatch( eventStartUpdate({
                 ...formValues
             }));
         }

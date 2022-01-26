@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'moment/locale/es';
@@ -9,7 +9,7 @@ import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../Store/UI/UIActions';
-import { eventActiveCleaning, eventSetActive } from '../../Store/Calendar/EventActions';
+import { eventActiveCleaning, eventSetActive, eventStartLoading } from '../../Store/Calendar/EventActions';
 import { AddNewFab } from '../UI/AddNewFab';
 import { DeleteEventFab } from '../UI/DeleteEventFab';
 
@@ -22,6 +22,13 @@ export const CalendarScreen = () => {
     const dispatch = useDispatch();
 
     const { events, activeEvent } = useSelector(state => state.Calendar);
+
+    const { uid } = useSelector( state => state.Auth );
+
+    useEffect(() => {
+      dispatch( eventStartLoading() );
+    }, [ dispatch ]);
+    
 
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month')
 
@@ -43,8 +50,9 @@ export const CalendarScreen = () => {
     }
 
     const eventStyleGetter = ( event, start, end, isSelected ) => {
+
         const style = {
-            backgroundColor: '#E2FFA5',
+            backgroundColor: uid === event.user._id ? '#007bff' : '#000',
             borderRadius: '0px',
             opacity: 0.8,
             display: 'block',
