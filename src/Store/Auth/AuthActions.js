@@ -62,7 +62,7 @@ const logout = () => ({
 
 export const startChecking = () => {
     return async( dispatch ) => {
-        const resp = await fetchWithToken( 'auth/reToken', 'POST' );
+        const resp = await fetchWithToken( 'auth/reToken' );
         const body = await resp.json();
 
         if( body.ok ){
