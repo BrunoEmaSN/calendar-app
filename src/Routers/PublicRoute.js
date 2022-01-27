@@ -7,7 +7,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 export const PublicRoute = ({
     isLogin
 }) => {
-    return isLogin ? <Outlet /> : <Navigate to ="/" />
+    return !isLogin ? <Outlet /> : <Navigate to ="/" />
 }
 
 PublicRoute.propTypes = {

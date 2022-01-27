@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   BrowserRouter as Router,
+  Navigate,
   Route,
   Routes
 } from "react-router-dom";
@@ -32,12 +33,13 @@ export const AppRouteer = () => {
         <Router>
             <div>
                 <Routes>
-                    <Route exact path="/login" element={ <PublicRoute isLogin={ !!uid } /> }>
-                        <Route exact path="/login" element={ <LoginScreen /> } />
+                    <Route path="/login" element={ <PublicRoute isLogin={ !!uid } /> }>
+                        <Route index element={ <LoginScreen /> } />
                     </Route>
-                    <Route exact path="/" element={ <PrivateRoute isLogin={ !!uid } /> }>
-                        <Route exact path="/" element={ <CalendarScreen /> } />
+                    <Route path="/" element={ <PrivateRoute isLogin={ !!uid } /> }>
+                        <Route index element={ <CalendarScreen /> } />
                     </Route>
+                    <Route path="*" element={ <Navigate to="/" /> } />
                 </Routes>
             </div>
         </Router>

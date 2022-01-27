@@ -64,7 +64,6 @@ export const startChecking = () => {
     return async( dispatch ) => {
         const resp = await fetchWithToken( 'auth/reToken' );
         const body = await resp.json();
-        console.log(body)
 
         if( body.ok ){
             localStorage.setItem('token', body.token);
