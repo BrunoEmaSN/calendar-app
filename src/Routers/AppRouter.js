@@ -33,13 +33,13 @@ export const AppRouteer = () => {
         <Router>
             <div>
                 <Routes>
-                    <Route path="calendar-app/login" element={ <PublicRoute isLogin={ !!uid } /> }>
+                    <Route path="/calendar-app/login" element={ <PublicRoute isLogin={ !!uid } /> }>
                         <Route index element={ <LoginScreen /> } />
                     </Route>
-                    <Route path="calendar-app/" element={ <PrivateRoute isLogin={ !!uid } /> }>
+                    <Route path="/calendar-app/" element={ <PrivateRoute isLogin={ !!uid } /> }>
                         <Route index element={ <CalendarScreen /> } />
                     </Route>
-                    <Route path="*" element={ <Navigate to="calendar-app/" /> } />
+                    <Route path="*" element={ <Navigate to="/calendar-app/" /> } />
                 </Routes>
             </div>
         </Router>
