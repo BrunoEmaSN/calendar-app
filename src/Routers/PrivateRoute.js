@@ -7,7 +7,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 export const PrivateRoute = ({
     isLogin
 }) => {
-    return isLogin ? <Outlet /> : <Navigate to ="/login" />
+    return isLogin ? <Outlet /> : <Navigate to ="calendar-app/login" />
 }
 
 PrivateRoute.propTypes = {
