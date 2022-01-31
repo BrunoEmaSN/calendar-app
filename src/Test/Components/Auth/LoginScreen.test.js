@@ -47,7 +47,6 @@ describe('Pruebas en <LoginScreen />', () => {
     });
     
     test('debe de llamar el dispatch del login', () => {
-        wrapper.find('form').at(0).simulate('submit', { preventDefault(){} });
         wrapper.find('input[name="lEmail"]').simulate('change', {
             target:{
                 name: 'lEmail',
@@ -56,16 +55,29 @@ describe('Pruebas en <LoginScreen />', () => {
         });
         wrapper.find('input[name="lPassword"]').simulate('change', {
             target:{
-                name: 'rPassword',
+                name: 'lPassword',
                 value: 'jjba123'
             }
         });
+        wrapper.find('form').at(0).simulate('submit', { preventDefault(){} });
         expect( setError ).not.toHaveBeenCalled();
         expect( rmError ).toHaveBeenCalled();
         expect( startLogin ).toHaveBeenCalledWith('jonathan@jojo.com', 'jjba123');
     });
 
     test('No hay registro si las contraseña son difernetes', () => {
+        wrapper.find('input[name="rName"]').simulate('change', {
+            target:{
+                name: 'rName',
+                value: 'jonathan'
+            }
+        });
+        wrapper.find('input[name="rEmail"]').simulate('change', {
+            target:{
+                name: 'rEmail',
+                value: 'jonathan@jojo.com'
+            }
+        });
         wrapper.find('input[name="rPassword"]').simulate('change', {
             target:{
                 name: 'rPassword',
@@ -82,7 +94,7 @@ describe('Pruebas en <LoginScreen />', () => {
 
         wrapper.find('form').at(1).simulate('submit', { preventDefault(){} });
 
-        expect( setError ).toHaveBeenCalledWith('Password and Confirm Password should be equals');
+        expect( setError ).toHaveBeenCalledWith('Las contraseñas deben de ser iguales');
         expect( rmError ).not.toHaveBeenCalled();
         expect( startRegister ).not.toHaveBeenCalled();
     });

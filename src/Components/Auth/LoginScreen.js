@@ -13,29 +13,29 @@ export const LoginScreen = () => {
     const { msgError } = useSelector( state => state.UI );
 
     const [ formLoginValues, handleLoginInputChange ] = useForm({
-        lEmail: 'jonathan@jojo.com',
-        lPassword: 'jjba123'
+        lEmail: '',
+        lPassword: ''
     });
     
     const { lEmail, lPassword } = formLoginValues;
 
     const [ formRegisterValues, handleRegisterInputChange ] = useForm({
-        rName: 'Joseph',
-        rEmail: 'joseph@jojo.com',
-        rPassword: 'jjba123',
-        rPasswordConfirm: 'jjba123'
+        rName: '',
+        rEmail: '',
+        rPassword: '',
+        rPasswordConfirm: ''
     });
 
     const { rName, rEmail, rPassword, rPasswordConfirm } = formRegisterValues;
 
     const isFormLoginValid = () => {
         if( !validator.isEmail( lEmail ) ) {
-            dispatch( setError( 'Invalid email' ) );
+            dispatch( setError( 'Correo invalido' ) );
             return false;
         }
         
         if( lPassword.length < 6 ){
-            dispatch( setError( 'Password should be at least 6 characters' ) );
+            dispatch( setError( 'La contraseña debe de contener minimo 6 caracteres' ) );
             return false;
         }
 
@@ -45,20 +45,20 @@ export const LoginScreen = () => {
 
     const isFormRegisterValid = () => {
         if( rName.length < 3 ){
-            dispatch( setError( 'Name should be at least 3 characters' ) );
+            dispatch( setError( 'El nombre debe de contener minimo 3 caracteres' ) );
         }
         if( !validator.isEmail( rEmail ) ) {
-            dispatch( setError( 'Invalid email' ) );
+            dispatch( setError( 'Correo invalido' ) );
             return false;
         }
         
         if( rPassword.length < 6 ){
-            dispatch( setError( 'Password should be at least 6 characters' ) );
+            dispatch( setError( 'La contraseña debe de contener minimo 6 caracteres' ) );
             return false;
         }
 
         if( !validator.equals(rPassword, rPasswordConfirm) ){
-            dispatch( setError( 'Password and Confirm Password should be equals' ) );
+            dispatch( setError( 'Las contraseñas deben de ser iguales' ) );
             return false;
         }
 

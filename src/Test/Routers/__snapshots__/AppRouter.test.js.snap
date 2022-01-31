@@ -1020,7 +1020,7 @@ exports[`Pruebas en <AppRouter/> debe de mostrar Ruta publica 1`] = `
               placeholder="Correo"
               required={true}
               type="text"
-              value="jonathan@jojo.com"
+              value=""
             />
           </div>
           <div
@@ -1033,7 +1033,7 @@ exports[`Pruebas en <AppRouter/> debe de mostrar Ruta publica 1`] = `
               placeholder="Contraseña"
               required={true}
               type="password"
-              value="jjba123"
+              value=""
             />
           </div>
           <div
@@ -1066,7 +1066,7 @@ exports[`Pruebas en <AppRouter/> debe de mostrar Ruta publica 1`] = `
               placeholder="Nombre"
               required={true}
               type="text"
-              value="Joseph"
+              value=""
             />
           </div>
           <div
@@ -1079,7 +1079,7 @@ exports[`Pruebas en <AppRouter/> debe de mostrar Ruta publica 1`] = `
               placeholder="Correo"
               required={true}
               type="email"
-              value="joseph@jojo.com"
+              value=""
             />
           </div>
           <div
@@ -1092,7 +1092,7 @@ exports[`Pruebas en <AppRouter/> debe de mostrar Ruta publica 1`] = `
               placeholder="Contraseña"
               required={true}
               type="password"
-              value="jjba123"
+              value=""
             />
           </div>
           <div
@@ -1105,7 +1105,7 @@ exports[`Pruebas en <AppRouter/> debe de mostrar Ruta publica 1`] = `
               placeholder="Repita la contraseña"
               required={true}
               type="password"
-              value="jjba123"
+              value=""
             />
           </div>
           <div
