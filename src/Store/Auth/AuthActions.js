@@ -25,7 +25,7 @@ export const startLogin = (email, password) => {
 
 export const startRegister = ( email, password, name ) => {
     return async ( dispatch ) => {
-        const resp = await fetchWithToken( 'auth/', { name, email, password }, 'POST' );
+        const resp = await fetchWithoutToken( 'auth/', { name, email, password }, 'POST' );
         const body = await resp.json();
 
         if( body.ok ){
