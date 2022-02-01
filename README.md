@@ -1,16 +1,26 @@
 # Calendar-app
 
+[![npm version](https://img.shields.io/npm/v/express-validator.svg)](https://www.npmjs.com/package/express-validator)
+[![Build Status](https://img.shields.io/travis/express-validator/express-validator.svg)](http://travis-ci.org/express-validator/express-validator)
+
 This is a repository meant to serve as a starting point if you want to build a calendar app with React.js and Redux
 
 ## Features
 
 [React.js](https://es.reactjs.org/tutorial/tutorial.html)
+
 [React-Redux](https://react-redux.js.org/introduction/getting-started)
+
 [Jest](https://jestjs.io/docs/getting-started)
+
 [Enzyme](https://www.npmjs.com/package/enzyme)
+
 [Enzyme Adapter React 17](https://github.com/wojtekmaj/enzyme-adapter-react-17)
+
 [react-datetime-picker](https://www.npmjs.com/package/react-datetime-picker)
+
 [react-big-calendar](https://www.npmjs.com/package/react-big-calendar)
+
 [redux-mock-store](https://www.npmjs.com/package/redux-mock-store)
 
 ## How To Start
