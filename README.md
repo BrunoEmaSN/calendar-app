@@ -1,7 +1,7 @@
 # Calendar-app
 
-[![npm version](https://img.shields.io/npm/v/express-validator.svg)]()
-[![Build Status](https://img.shields.io/travis/express-validator/express-validator.svg)]()
+![npm version](https://img.shields.io/npm/v/express-validator.svg)
+![Build Status](https://img.shields.io/travis/express-validator/express-validator.svg)
 
 This is a repository meant to serve as a starting point if you want to build a calendar app with React.js and Redux
 
